@@ -1,0 +1,27 @@
+{
+  "name": "solar-offline-app",
+  "version": "1.0.0",
+  "description": "Local offline app for solar sizing",
+  "main": "server.js",
+  "bin": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "build": "pkg . --targets node16-win-x64 --output dist/solar-app.exe"
+  },
+  "dependencies": {
+    "express": "^4.18.2"
+  },
+  "pkg": {
+    "assets": [
+      "public/**/*",
+      "data/security.json"
+    ],
+    "targets": [
+      "node16-win-x64"
+    ],
+    "outputPath": "dist"
+  },
+  "devDependencies": {
+    "pkg": "^5.8.1"
+  }
+}
