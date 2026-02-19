@@ -1,0 +1,589 @@
+{
+  "companyInfo": {
+    "title": "برنامج الطاقة الشمسية - مؤسسة ديار المفلحي ",
+    "subtitle": "الطاقة الشمسية - حلول الاقة المتحدة والمستدامة",
+    "headerContact": "771627162  | القيم (التاريخ) - بعد محطة السالم وهدفى برزان",
+    "whatsappNumber": "967735849775"
+  },
+  "authConfig": {
+    "username": "mm123",
+    "password": "1234"
+  },
+  "emailConfig": {
+    "serviceId": "service_ajupizq",
+    "templateId": "template_z21os4v",
+    "userId": "52SYGy0u8F2Givb3L",
+    "receiverEmail": "hishambanafa00@gmail.com"
+  },
+  "deviceConsumption": {
+    "lamps": 15,
+    "fans": 25,
+    "tv": 100,
+    "fridge": 140,
+    "ac1_day": 1200,
+    "ac1_night": 500,
+    "ac1_5_day": 1700,
+    "ac1_5_night": 800,
+    "washing_machine": 500
+  },
+  "solarCalculation": {
+    "peakHours": 6,
+    "safetyMargin": 1.3,
+    "panelWattages": [
+      585,
+      645,
+      715
+    ]
+  },
+  "prices": {
+    "panel_585": 80,
+    "panel_645": 90,
+    "panel_715": 100
+  },
+  "panel_names": {
+    "panel_585": "لوح 585 كيلو واط3333",
+    "panel_645": "لوح 645 واط",
+    "panel_715": "لوح 715 واط"
+  },
+  "inverters": [
+    {
+      "id": "inv_6k_mmd_v4",
+      "name": "جهاز انفرتر 6 كيلو MMD الجيل الرابع",
+      "details": "ضمان سنتين",
+      "price": 400,
+      "max_panels_585": 9,
+      "max_panels_645": 8,
+      "max_panels_715": 7,
+      "max_night_consumption": 8000
+    },
+    {
+      "id": "inv_6k_growatt",
+      "name": "جهاز انفرتر 6 كيلو جروات",
+      "details": "التفاصيل",
+      "price": 430,
+      "max_panels_585": 12,
+      "max_panels_645": 11,
+      "max_panels_715": 9,
+      "max_night_consumption": 11400
+    },
+    {
+      "id": "inv_8k_mmd_v5",
+      "name": "جهاز انفرتر 8 كيلو MMD الجيل الخامس",
+      "details": "ضمان سنتين",
+      "price": 850,
+      "max_panels_585": 15,
+      "max_panels_645": 14,
+      "max_panels_715": 12,
+      "max_night_consumption": 11400
+    },
+    {
+      "id": "inv_11k_mmd_v5",
+      "name": "جهاز انفرتر 11 كيلو MMD الجيل الخامس",
+      "details": "ضمان سنتين",
+      "price": 950,
+      "max_panels_585": 18,
+      "max_panels_645": 16,
+      "max_panels_715": 15,
+      "max_night_consumption": 16000
+    },
+    {
+      "id": "inv_12k_growatt",
+      "name": "جهاز انفرتر 12 كيلو جروات",
+      "details": "التفاصيل",
+      "price": 950,
+      "max_panels_585": 22,
+      "max_panels_645": 20,
+      "max_panels_715": 18,
+      "max_night_consumption": 25600
+    }
+  ],
+  "inverters_load_rules": [
+    {
+      "id": "inv_12k_deye_lv",
+      "name": "جهاز انفرتر 12 كيلو Deye سنجل low voltage",
+      "details": "التفاصيل",
+      "price": 1650,
+      "max_panels_585": 32,
+      "max_panels_645": 29,
+      "max_panels_715": 26,
+      "max_night_consumption": 25600,
+      "max_hourly_load": 10800
+    },
+    {
+      "id": "inv_16k_deye_lv",
+      "name": "جهاز انفرتر 16 كيلو Deye سنجل low voltage",
+      "details": "التفاصيل",
+      "price": 1950,
+      "max_panels_585": 39,
+      "max_panels_645": 35,
+      "max_panels_715": 32,
+      "max_night_consumption": 25600,
+      "max_hourly_load": 14400
+    },
+    {
+      "id": "inv_25k_deye_hv",
+      "name": "جهاز انفرتر 25 كيلو Deye جهد High Voltage",
+      "details": "التفاصيل",
+      "price": 2150,
+      "max_panels_585": 50,
+      "max_panels_645": 45,
+      "max_panels_715": 40,
+      "max_night_consumption": 48000,
+      "max_hourly_load": 22500
+    },
+    {
+      "id": "inv_30k_deye_hv",
+      "name": "جهاز انفرتر 30 كيلو Deye جهد High Voltage",
+      "details": "التفاصيل",
+      "price": 2890,
+      "max_panels_585": 73,
+      "max_panels_645": 66,
+      "max_panels_715": 60,
+      "max_night_consumption": 48000,
+      "max_hourly_load": 27000
+    },
+    {
+      "id": "inv_40k_deye_hv",
+      "name": "جهاز انفرتر 40 كيلو Deye جهد High Voltage",
+      "details": "التفاصيل",
+      "price": 3800,
+      "max_panels_585": 98,
+      "max_panels_645": 89,
+      "max_panels_715": 80,
+      "max_night_consumption": 96000,
+      "max_hourly_load": 36000
+    },
+    {
+      "id": "inv_50k_deye_hv",
+      "name": "جهاز انفرتر 50 كيلو Deye جهد High Voltage",
+      "details": "التفاصيل",
+      "price": 4100,
+      "max_panels_585": 123,
+      "max_panels_645": 111,
+      "max_panels_715": 100,
+      "max_night_consumption": 96000,
+      "max_hourly_load": 45000
+    },
+    {
+      "id": "inv_80k_deye_hv",
+      "name": "جهاز انفرتر 80 كيلو Deye جهد High Voltage",
+      "details": "التفاصيل",
+      "price": 6050,
+      "max_panels_585": 196,
+      "max_panels_645": 178,
+      "max_panels_715": 161,
+      "max_night_consumption": 96000,
+      "max_hourly_load": 72000
+    }
+  ],
+  "batteries": [
+    {
+      "id": "bat_5k_mmd_lv",
+      "name": "بطارية ليثيوم 5 كيلو نوع MMD ضمان 5 سنوات low voltage",
+      "details": "ضمان 5 سنوات استبدال",
+      "price": 900,
+      "capacity": 5000,
+      "min_consumption": 0,
+      "max_consumption": 4000,
+      "count_modifier": 2,
+      "net": "4000 وات"
+    },
+    {
+      "id": "bat_10k_mmd_lv",
+      "name": "بطارية ليثيوم 10 كيلو نوع MMD ضمان 5 سنوات low voltage",
+      "details": "ضمان 5 سنوات استبدال",
+      "price": 1600,
+      "capacity": 10000,
+      "min_consumption": 4001,
+      "max_consumption": 8000,
+      "count_modifier": 1,
+      "net": "8000 وات"
+    },
+    {
+      "id": "bat_15k_mmd_pro_lv",
+      "name": "بطارية ليثيوم 15 كيلو نوع MMD Pro ضمان 5 سنوات low voltage",
+      "details": "بنظام أطفاء حرائق داخلي (ضمان 7 سنوات)",
+      "price": 1999,
+      "capacity": 16380,
+      "min_consumption": 8001,
+      "max_consumption": 11440,
+      "count_modifier": 1,
+      "net": "16380 وات"
+    },
+    {
+      "id": "bat_16k_deye_lv",
+      "name": "بطارية ليثيوم 16 كيلو نوع Deye ضمان 5 سنوات low voltage",
+      "details": "ضمان 5 سنوات استبدال",
+      "price": 1650,
+      "capacity": 10000,
+      "min_consumption": 11441,
+      "max_consumption": 12800,
+      "count_modifier": 1,
+      "net": "10000 وات"
+    },
+    {
+      "id": "bat_20k_mmd_lv",
+      "name": "بطارية ليثيوم 20 كيلو نوع MMD ضمان 5 سنوات low voltage",
+      "details": "بنظام أطفاء حرائق داخلي (ضمان 7 سنوات)",
+      "price": 3100,
+      "capacity": 16380,
+      "min_consumption": 12800,
+      "max_consumption": 16000,
+      "count_modifier": 1,
+      "net": "16380 وات"
+    },
+    {
+      "id": "bat_30k_mmd_pro_lv",
+      "name": "بطارية ليثيوم 30 كيلو نوع MMD Proضمان 5 سنوات low voltage",
+      "details": "التفاصيل/الضمان",
+      "price": 3950,
+      "capacity": 0,
+      "min_consumption": 16001,
+      "max_consumption": 22880,
+      "count_modifier": 1,
+      "net": "22880 وات"
+    },
+    {
+      "id": "bat_32k_deye_lv",
+      "name": "بطارية ليثيوم 32 كيلو نوع Deye ضمان 5 سنوات low voltage",
+      "details": "التفاصيل/الضمان",
+      "price": 3200,
+      "capacity": 0,
+      "min_consumption": 22881,
+      "max_consumption": 25600,
+      "count_modifier": 1,
+      "net": "25600 وات"
+    },
+    {
+      "id": "bank_35k_mmd_hv",
+      "name": "بنك طاقة 35 كيلو نوع MMD جهد High Voltage مع RACK و BMS",
+      "details": "التفاصيل/الضمان",
+      "price": 6550,
+      "capacity": 0,
+      "min_consumption": 25601,
+      "max_consumption": 28000,
+      "count_modifier": 1,
+      "net": "28000 وات"
+    },
+    {
+      "id": "bank_40k_mmd_hv",
+      "name": "بنك طاقة 40 كيلو نوع MMD جهد High Voltage مع RACK و BMS",
+      "details": "التفاصيل/الضمان",
+      "price": 7350,
+      "capacity": 0,
+      "min_consumption": 28001,
+      "max_consumption": 32000,
+      "count_modifier": 1,
+      "net": "32000 وات"
+    },
+    {
+      "id": "bank_45k_mmd_hv",
+      "name": "بنك طاقة 45 كيلو نوع MMD جهد High Voltage مع RACK و BMS",
+      "details": "التفاصيل/الضمان",
+      "price": 8150,
+      "capacity": 0,
+      "min_consumption": 32001,
+      "max_consumption": 36000,
+      "count_modifier": 1,
+      "net": "36000 وات"
+    },
+    {
+      "id": "bank_50k_mmd_hv",
+      "name": "بنك طاقة 50 كيلو نوع MMD جهد High Voltage مع RACK و BMS",
+      "details": "التفاصيل/الضمان",
+      "price": 8950,
+      "capacity": 0,
+      "min_consumption": 36001,
+      "max_consumption": 40000,
+      "count_modifier": 1,
+      "net": "40000 وات"
+    },
+    {
+      "id": "bank_55k_mmd_hv",
+      "name": "بنك طاقة 55 كيلو نوع MMD جهد High Voltage مع RACK و BMS",
+      "details": "التفاصيل/الضمان",
+      "price": 9750,
+      "capacity": 0,
+      "min_consumption": 40001,
+      "max_consumption": 44000,
+      "count_modifier": 1
+    },
+    {
+      "id": "bank_60k_mmd_hv",
+      "name": "بنك طاقة 60 كيلو نوع MMD جهد High Voltage مع RACK و BMS",
+      "details": "التفاصيل/الضمان",
+      "price": 10550,
+      "capacity": 0,
+      "min_consumption": 44001,
+      "max_consumption": 48000,
+      "count_modifier": 1
+    },
+    {
+      "id": "bank_65k_mmd_hv",
+      "name": "بنك طاقة 65 كيلو نوع MMD جهد High Voltage مع 2RACK و 2BMS",
+      "details": "التفاصيل/الضمان",
+      "price": 12300,
+      "capacity": 0,
+      "minConsumption": 48001,
+      "maxConsumption": 52000,
+      "countModifier": 1
+    },
+    {
+      "id": "bank_70k_mmd_hv",
+      "name": "بنك طاقة 70 كيلو نوع MMD جهد High Voltage مع 2RACK و 2BMS",
+      "details": "التفاصيل/الضمان",
+      "price": 13100,
+      "capacity": 0,
+      "minConsumption": 52001,
+      "maxConsumption": 56000,
+      "countModifier": 1
+    },
+    {
+      "id": "bank_75k_mmd_hv",
+      "name": "بنك طاقة 75 كيلو نوع MMD جهد High Voltage مع 2RACK و 2BMS",
+      "details": "التفاصيل/الضمان",
+      "price": 13900,
+      "capacity": 0,
+      "minConsumption": 56001,
+      "maxConsumption": 60000,
+      "countModifier": 1
+    },
+    {
+      "id": "bank_80k_mmd_hv",
+      "name": "بنك طاقة 80 كيلو نوع MMD جهد High Voltage مع 2RACK و 2BMS",
+      "details": "التفاصيل/الضمان",
+      "price": 14700,
+      "capacity": 0,
+      "minConsumption": 60001,
+      "maxConsumption": 64000,
+      "countModifier": 1
+    },
+    {
+      "id": "bank_85k_mmd_hv",
+      "name": "بنك طاقة 85 كيلو نوع MMD جهد High Voltage مع 2RACK و 2BMS",
+      "details": "التفاصيل/الضمان",
+      "price": 15500,
+      "capacity": 0,
+      "minConsumption": 64001,
+      "maxConsumption": 68000,
+      "countModifier": 1
+    },
+    {
+      "id": "bank_90k_mmd_hv",
+      "name": "بنك طاقة 90 كيلو نوع MMD جهد High Voltage مع 2RACK و 2BMS",
+      "details": "التفاصيل/الضمان",
+      "price": 16300,
+      "capacity": 0,
+      "minConsumption": 68001,
+      "maxConsumption": 72000,
+      "countModifier": 1
+    },
+    {
+      "id": "bank_95k_mmd_hv",
+      "name": "بنك طاقة 95 كيلو نوع MMD جهد High Voltage مع 2RACK و 2BMS",
+      "details": "التفاصيل/الضمان",
+      "price": 17100,
+      "capacity": 0,
+      "minConsumption": 72001,
+      "maxConsumption": 76000,
+      "countModifier": 1
+    },
+    {
+      "id": "bank_100k_mmd_hv",
+      "name": "بنك طاقة 100 كيلو نوع MMD جهد High Voltage مع 2RACK و 2BMS",
+      "details": "التفاصيل/الضمان",
+      "price": 17900,
+      "capacity": 0,
+      "minConsumption": 76001,
+      "maxConsumption": 80000,
+      "countModifier": 1
+    },
+    {
+      "id": "bank_105k_mmd_hv",
+      "name": "بنك طاقة 105 كيلو نوع MMD جهد High Voltage مع 2RACK و 2BMS",
+      "details": "التفاصيل/الضمان",
+      "price": 18700,
+      "capacity": 0,
+      "minConsumption": 80001,
+      "maxConsumption": 84000,
+      "countModifier": 1
+    },
+    {
+      "id": "bank_110k_mmd_hv",
+      "name": "بنك طاقة 110 كيلو نوع MMD جهد High Voltage مع 2RACK و 2BMS",
+      "details": "التفاصيل/الضمان",
+      "price": 19500,
+      "capacity": 0,
+      "minConsumption": 84001,
+      "maxConsumption": 88000,
+      "countModifier": 1
+    },
+    {
+      "id": "bank_115k_mmd_hv",
+      "name": "بنك طاقة 115 كيلو نوع MMD جهد High Voltage مع 2RACK و 2BMS",
+      "details": "التفاصيل/الضمان",
+      "price": 20300,
+      "capacity": 0,
+      "minConsumption": 88001,
+      "maxConsumption": 92000,
+      "countModifier": 1
+    },
+    {
+      "id": "bank_120k_mmd_hv",
+      "name": "بنك طاقة 120 كيلو نوع MMD جهد High Voltage مع 2RACK و 2BMS",
+      "details": "التفاصيل/الضمان",
+      "price": 21100,
+      "capacity": 0,
+      "minConsumption": 92001,
+      "maxConsumption": 96000,
+      "countModifier": 1
+    },
+    {
+      "id": "engineer_visit",
+      "name": "🛑 عزيزي العميل انت بحاجه لنزول مهندس ميداني 🛑",
+      "details": "التفاصيل/الضمان",
+      "price": 0,
+      "capacity": 0,
+      "minConsumption": 96001,
+      "maxConsumption": 9999999,
+      "countModifier": 1
+    }
+  ],
+  "themeColors": {
+    "primary": "#2e7d32",
+    "primaryLight": "#4caf50",
+    "primaryDark": "#1b5e20",
+    "background": "#f5f5f5",
+    "card": "#ffffff",
+    "text": "#333333",
+    "border": "#e0e0e0",
+    "white": "#ffffff",
+    "grayLight": "#f9f9f9",
+    "grayMedium": "#eeeeee"
+  },
+  "printConfig": {
+    "headerTitle": "مؤسسة ديار المفلحي للطاقة الشمسية",
+    "headerSubtitle": "تقرير المنظومة الشمسية",
+    "footerText": "مؤسسة ديار المفلحي للطاقة الشمسية",
+    "contactInfo": "هاتف: 771627162 | القيم (التاريخ) - بعد محطة السالم وهدفى برزان",
+    "primaryColor": "#2e7d32",
+    "textColor": "#333333"
+  },
+  "inverterRules": [
+    {
+      "maxPanels585": 9,
+      "maxPanels645": 8,
+      "maxPanels715": 7,
+      "type": "6 كيلو",
+      "brand": "فولترونيك",
+      "warranty": "سنتين",
+      "details": "مناسب لـ {585} لوح 585 واط، {645} لوح 645 واط، {715} لوح 715 واط"
+    },
+    {
+      "maxPanels585": 12,
+      "maxPanels645": 11,
+      "maxPanels715": 10,
+      "type": "6 كيلو",
+      "brand": "جروات",
+      "warranty": "سنتين",
+      "details": "مناسب لـ {585} لوح 585 واط، {645} لوح 645 واط، {715} لوح 715 واط"
+    },
+    {
+      "maxPanels585": 15,
+      "maxPanels645": 13,
+      "maxPanels715": 12,
+      "type": "8 كيلو",
+      "brand": "فولترونيك",
+      "warranty": "سنتين",
+      "details": "مناسب لـ {585} لوح 585 واط، {645} لوح 645 واط، {715} لوح 715 واط"
+    },
+    {
+      "maxPanels585": 18,
+      "maxPanels645": 16,
+      "maxPanels715": 15,
+      "type": "11 كيلو",
+      "brand": "فولترونيك",
+      "warranty": "سنتين",
+      "details": "مناسب لـ {585} لوح 585 واط، {645} لوح 645 واط، {715} لوح 715 واط"
+    }
+  ],
+  "inverterLoadRules": [
+    {
+      "maxLoad": 7200,
+      "maxPanels585": 24,
+      "type": "8 كيلو",
+      "brand": "دايا",
+      "warranty": "سنتين",
+      "details": "مناسب للأحمال حتى 7200 واط وعدد ألواح 585 حتى 24 لوح"
+    },
+    {
+      "maxLoad": 10800,
+      "maxPanels585": 36,
+      "type": "12 كيلو",
+      "brand": "دايا",
+      "warranty": "سنتين",
+      "details": "مناسب للأحمال حتى 10800 واط وعدد ألواح 585 حتى 36 لوح"
+    },
+    {
+      "maxLoad": 14300,
+      "maxPanels585": 42,
+      "type": "16 كيلو",
+      "brand": "دايا",
+      "warranty": "سنتين",
+      "details": "مناسب للأحمال حتى 14300 واط وعدد ألواح 585 حتى 42 لوح"
+    }
+  ],
+  "batteryRules": [
+    {
+      "minWatt": 0,
+      "maxWatt": 4160,
+      "type": "ليثيوم 5 كيلو",
+      "brand": "MMD",
+      "capacity": "5 كيلو",
+      "count": 1,
+      "warranty": "5 سنوات استبدال",
+      "specs": "بطارية ليثيوم 5 كيلو MMD",
+      "net": "10"
+    },
+    {
+      "minWatt": 4200,
+      "maxWatt": 8300,
+      "type": "ليثيوم 10 كيلو",
+      "brand": "MMD",
+      "capacity": "10 كيلو",
+      "count": 1,
+      "warranty": "5 سنوات استبدال",
+      "specs": "بطارية ليثيوم 10 كيلو MMD"
+    },
+    {
+      "minWatt": 8350,
+      "maxWatt": 13200,
+      "type": "ليثيوم 16.38 كيلو",
+      "brand": "برو",
+      "capacity": "16.38 كيلو",
+      "count": 1,
+      "warranty": "7 سنوات",
+      "specs": "بطارية ليثيوم 16.38 كيلو برو بنظام أطفاء حرائق داخلي"
+    },
+    {
+      "minWatt": 13500,
+      "maxWatt": 16600,
+      "type": "ليثيوم 10 كيلو",
+      "brand": "MMD",
+      "capacity": "10 كيلو",
+      "count": 2,
+      "warranty": "5 سنوات استبدال",
+      "specs": "بطارية ليثيوم 10 كيلو MMD"
+    },
+    {
+      "minWatt": 16600,
+      "maxWatt": 26400,
+      "type": "ليثيوم 16.38 كيلو",
+      "brand": "برو",
+      "capacity": "16.38 كيلو",
+      "count": 2,
+      "warranty": "7 سنوات",
+      "specs": "بطارية ليثيوم 16.38 كيلو برو بنظام أطفاء حرائق داخلي"
+    }
+  ]
+}
