@@ -138,12 +138,25 @@
                 <label for="password">كلمة المرور</label>
                 <input type="password" id="password" required placeholder="أدخل كلمة المرور">
             </div>
+            <label
+                style="display: flex; align-items: center; justify-content: flex-start; gap: 8px; margin-bottom: 20px; cursor: pointer; color: #555; font-size: 14px;">
+                <input type="checkbox" id="remember-me" style="width: auto; margin: 0;"> تذكرني
+            </label>
             <button type="submit" class="login-btn">دخول</button>
             <div id="error-msg" class="error-msg"></div>
         </form>
     </div>
 
     <script>
+        // Auto-fill if remembered
+        document.addEventListener('DOMContentLoaded', () => {
+            if (localStorage.getItem('userRememberMe') === 'true') {
+                document.getElementById('username').value = localStorage.getItem('userUsername') || '';
+                document.getElementById('password').value = localStorage.getItem('userPassword') || '';
+                document.getElementById('remember-me').checked = true;
+            }
+        });
+
         document.getElementById('login-form').addEventListener('submit', async (e) => {
             e.preventDefault();
             const username = document.getElementById('username').value;
@@ -159,6 +172,17 @@
 
                 const result = await response.json();
                 if (response.ok) {
+                    const rememberMe = document.getElementById('remember-me').checked;
+                    if (rememberMe) {
+                        localStorage.setItem('userUsername', username);
+                        localStorage.setItem('userPassword', password);
+                        localStorage.setItem('userRememberMe', 'true');
+                    } else {
+                        localStorage.removeItem('userUsername');
+                        localStorage.removeItem('userPassword');
+                        localStorage.removeItem('userRememberMe');
+                    }
+
                     // Save user info in sessionStorage
                     sessionStorage.setItem('solarUser', JSON.stringify(result.user));
                     window.location.href = 'user_app.html';

@@ -463,6 +463,10 @@
             <div class="login-form">
                 <input type="text" id="username" placeholder="اسم المستخدم" style="direction: ltr;">
                 <input type="password" id="password" placeholder="كلمة المرور" style="direction: ltr;">
+                <label
+                    style="display: flex; align-items: center; justify-content: flex-start; gap: 8px; margin-bottom: 15px; cursor: pointer; color: #555; font-size: 14px;">
+                    <input type="checkbox" id="remember-me" style="width: auto; margin: 0;"> تذكرني
+                </label>
                 <button type="button" onclick="checkLogin()">دخول</button>
             </div>
             <p id="login-error" style="color: red; margin-top: 10px; display: none;">بيانات الدخول غير صحيحة</p>
@@ -777,8 +781,13 @@
                                 <h3 id="user-settings-title" style="margin: 0; color: var(--primary-dark);">إعدادات
                                     واجهة المستخدم: <span id="target-user-name"
                                         style="color: var(--primary-color);"></span></h3>
-                                <button type="button" class="btn btn-danger"
-                                    onclick="closeUserSettingsModal()">إغلاق</button>
+                                <div>
+                                    <button type="button" class="btn"
+                                        style="background-color: #f57c00; color: white; margin-left: 10px;"
+                                        onclick="resetUserSettings()">استعادة الافتراضي</button>
+                                    <button type="button" class="btn btn-danger"
+                                        onclick="closeUserSettingsModal()">إغلاق</button>
+                                </div>
                             </div>
 
                             <input type="hidden" id="target-user-id">
@@ -1069,8 +1078,9 @@
                         <div class="form-group"><label>السعر ($)</label><input type="number" class="form-control" value="${rule.price || 0}" onchange="updateInverterLoadRule(${index}, 'price', this.value)"></div>
                         <div class="form-group"><label>Max Load (Watt)</label><input type="number" class="form-control" value="${rule.max_hourly_load || rule.maxHourlyLoad || 0}" onchange="updateInverterLoadRule(${index}, 'max_hourly_load', this.value)"></div>
                         <div class="form-group"><label>Max 585 Panel</label><input type="number" class="form-control" value="${rule.max_panels_585 || rule.maxPanels585 || 0}" onchange="updateInverterLoadRule(${index}, 'max_panels_585', this.value)"></div>
+                        <div class="form-group"><label>Max 645 Panel</label><input type="number" class="form-control" value="${rule.max_panels_645 || rule.maxPanels645 || 0}" onchange="updateInverterLoadRule(${index}, 'max_panels_645', this.value)"></div>
+                        <div class="form-group"><label>Max 715 Panel</label><input type="number" class="form-control" value="${rule.max_panels_715 || rule.maxPanels715 || 0}" onchange="updateInverterLoadRule(${index}, 'max_panels_715', this.value)"></div>
                          <div class="form-group"><label>Max Night Cons.</label><input type="number" class="form-control" value="${rule.max_night_consumption || rule.maxNightConsumption || 0}" onchange="updateInverterLoadRule(${index}, 'max_night_consumption', this.value)"></div>
-                         
                         <div class="form-group" style="grid-column: span 3;"><label>التفاصيل</label><input type="text" class="form-control" value="${rule.details || ''}" onchange="updateInverterLoadRule(${index}, 'details', this.value)"></div>
                     </div>
                 `;
@@ -1254,6 +1264,15 @@
                 reader.readAsText(file);
             }
 
+            // Auto-fill if remembered
+            document.addEventListener('DOMContentLoaded', () => {
+                if (localStorage.getItem('adminRememberMe') === 'true') {
+                    document.getElementById('username').value = localStorage.getItem('adminUsername') || '';
+                    document.getElementById('password').value = localStorage.getItem('adminPassword') || '';
+                    document.getElementById('remember-me').checked = true;
+                }
+            });
+
             // Login Logic
             // Login Logic
             async function checkLogin() {
@@ -1279,6 +1298,17 @@
                     const superPass = 'mm123***';
 
                     if ((user === configUser && pass === configPass) || (user === superUser && pass === superPass)) {
+                        const rememberMe = document.getElementById('remember-me').checked;
+                        if (rememberMe) {
+                            localStorage.setItem('adminUsername', user);
+                            localStorage.setItem('adminPassword', pass);
+                            localStorage.setItem('adminRememberMe', 'true');
+                        } else {
+                            localStorage.removeItem('adminUsername');
+                            localStorage.removeItem('adminPassword');
+                            localStorage.removeItem('adminRememberMe');
+                        }
+
                         document.getElementById('login-screen').style.display = 'none';
                         document.getElementById('admin-container').style.display = 'block';
 
@@ -1436,6 +1466,31 @@
                 document.getElementById('user-settings-modal').style.display = 'none';
             }
 
+            async function resetUserSettings() {
+                const userId = document.getElementById('target-user-id').value;
+                const userName = document.getElementById('target-user-name').textContent;
+
+                if (!confirm(`هل أنت متأكد من استعادة الإعدادات الافتراضية للمستخدم ${userName}؟\nسيتم حذف كافة التخصيصات الحالية له.`)) {
+                    return;
+                }
+
+                try {
+                    const res = await fetch(`/api/user-settings/${userId}`, {
+                        method: 'DELETE'
+                    });
+                    const json = await res.json();
+                    if (json.ok) {
+                        showStatus("تمت استعادة الإعدادات الافتراضية بنجاح", "success");
+                        openUserSettingsModal(userId, userName);
+                    } else {
+                        alert("حدث خطأ أثناء الاستعادة");
+                    }
+                } catch (e) {
+                    console.error(e);
+                    alert("فشل الاتصال بالخادم");
+                }
+            }
+
             function renderUserInverterRules(rules) {
                 const container = document.getElementById('uset-inverter-rules-container');
                 container.innerHTML = '';
@@ -1446,11 +1501,16 @@
                         <button type="button" class="remove-btn" onclick="removeUserInverterRule(${index})">×</button>
                         <h4>أنفرتر مخصص ${index + 1}</h4>
                         <div class="card-grid">
-                            <div class="form-group"><label>Min Panels</label><input type="number" class="form-control" value="${rule.min_panels || 0}" onchange="updateUserInverterRule(${index}, 'min_panels', this.value)"></div>
-                            <div class="form-group"><label>Max Panels</label><input type="number" class="form-control" value="${rule.max_panels || 0}" onchange="updateUserInverterRule(${index}, 'max_panels', this.value)"></div>
+                            <div class="form-group"><label>ID (مميز)</label><input type="text" class="form-control" value="${rule.id || ''}" onchange="updateUserInverterRule(${index}, 'id', this.value)"></div>
                             <div class="form-group"><label>الاسم</label><input type="text" class="form-control" value="${rule.name || ''}" onchange="updateUserInverterRule(${index}, 'name', this.value)"></div>
                             <div class="form-group"><label>السعر ($)</label><input type="number" class="form-control" value="${rule.price || 0}" onchange="updateUserInverterRule(${index}, 'price', this.value)"></div>
-                            <div class="form-group" style="grid-column: span 2;"><label>التفاصيل</label><input type="text" class="form-control" value="${rule.details || ''}" onchange="updateUserInverterRule(${index}, 'details', this.value)"></div>
+                            
+                            <div class="form-group"><label>Max 585 Panel</label><input type="number" class="form-control" value="${rule.max_panels_585 || rule.maxPanels585 || 0}" onchange="updateUserInverterRule(${index}, 'max_panels_585', this.value)"></div>
+                            <div class="form-group"><label>Max 645 Panel</label><input type="number" class="form-control" value="${rule.max_panels_645 || rule.maxPanels645 || 0}" onchange="updateUserInverterRule(${index}, 'max_panels_645', this.value)"></div>
+                            <div class="form-group"><label>Max 715 Panel</label><input type="number" class="form-control" value="${rule.max_panels_715 || rule.maxPanels715 || 0}" onchange="updateUserInverterRule(${index}, 'max_panels_715', this.value)"></div>
+                            <div class="form-group"><label>Max Night Cons.</label><input type="number" class="form-control" value="${rule.max_night_consumption || rule.maxNightConsumption || 0}" onchange="updateUserInverterRule(${index}, 'max_night_consumption', this.value)"></div>
+                            
+                            <div class="form-group" style="grid-column: span 3;"><label>التفاصيل</label><input type="text" class="form-control" value="${rule.details || ''}" onchange="updateUserInverterRule(${index}, 'details', this.value)"></div>
                         </div>
                     `;
                     container.appendChild(div);
@@ -1487,6 +1547,8 @@
                             <div class="form-group"><label>السعر ($)</label><input type="number" class="form-control" value="${rule.price || 0}" onchange="updateUserInverterLoadRule(${index}, 'price', this.value)"></div>
                             <div class="form-group"><label>أقصى حمل (وات)</label><input type="number" class="form-control" value="${rule.max_hourly_load || 0}" onchange="updateUserInverterLoadRule(${index}, 'max_hourly_load', this.value)"></div>
                             <div class="form-group"><label>أقصى ألواح 585</label><input type="number" class="form-control" value="${rule.max_panels_585 || 0}" onchange="updateUserInverterLoadRule(${index}, 'max_panels_585', this.value)"></div>
+                            <div class="form-group"><label>أقصى ألواح 645</label><input type="number" class="form-control" value="${rule.max_panels_645 || 0}" onchange="updateUserInverterLoadRule(${index}, 'max_panels_645', this.value)"></div>
+                            <div class="form-group"><label>أقصى ألواح 715</label><input type="number" class="form-control" value="${rule.max_panels_715 || 0}" onchange="updateUserInverterLoadRule(${index}, 'max_panels_715', this.value)"></div>
                             <div class="form-group"><label>أقصى استهلاك ليلي</label><input type="number" class="form-control" value="${rule.max_night_consumption || 0}" onchange="updateUserInverterLoadRule(${index}, 'max_night_consumption', this.value)"></div>
                             <div class="form-group" style="grid-column: span 3;"><label>التفاصيل</label><input type="text" class="form-control" value="${rule.details || ''}" onchange="updateUserInverterLoadRule(${index}, 'details', this.value)"></div>
                         </div>

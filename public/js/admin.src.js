@@ -87,8 +87,9 @@ function renderInverterLoadRules(rules) {
             <div class="form-group"><label>السعر ($)</label><input type="number" class="form-control" value="${rule.price || 0}" onchange="updateInverterLoadRule(${index}, 'price', this.value)"></div>
             <div class="form-group"><label>Max Load (Watt)</label><input type="number" class="form-control" value="${rule.max_hourly_load || rule.maxHourlyLoad || 0}" onchange="updateInverterLoadRule(${index}, 'max_hourly_load', this.value)"></div>
             <div class="form-group"><label>Max 585 Panel</label><input type="number" class="form-control" value="${rule.max_panels_585 || rule.maxPanels585 || 0}" onchange="updateInverterLoadRule(${index}, 'max_panels_585', this.value)"></div>
-             <div class="form-group"><label>Max Night Cons.</label><input type="number" class="form-control" value="${rule.max_night_consumption || rule.maxNightConsumption || 0}" onchange="updateInverterLoadRule(${index}, 'max_night_consumption', this.value)"></div>
-             
+            <div class="form-group"><label>Max 645 Panel</label><input type="number" class="form-control" value="${rule.max_panels_645 || rule.maxPanels645 || 0}" onchange="updateInverterLoadRule(${index}, 'max_panels_645', this.value)"></div>
+            <div class="form-group"><label>Max 715 Panel</label><input type="number" class="form-control" value="${rule.max_panels_715 || rule.maxPanels715 || 0}" onchange="updateInverterLoadRule(${index}, 'max_panels_715', this.value)"></div>
+            <div class="form-group"><label>Max Night Cons.</label><input type="number" class="form-control" value="${rule.max_night_consumption || rule.maxNightConsumption || 0}" onchange="updateInverterLoadRule(${index}, 'max_night_consumption', this.value)"></div>
             <div class="form-group" style="grid-column: span 3;"><label>التفاصيل</label><input type="text" class="form-control" value="${rule.details || ''}" onchange="updateInverterLoadRule(${index}, 'details', this.value)"></div>
         </div>
     `;

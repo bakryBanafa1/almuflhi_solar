@@ -448,6 +448,19 @@ app.post('/api/user-settings/:userId', (req, res) => {
   }
 });
 
+app.delete('/api/user-settings/:userId', (req, res) => {
+  try {
+    const userId = req.params.userId;
+    const userSettingsPath = path.join(dataDir, 'user_settings', `${userId}.json`);
+    if (fs.existsSync(userSettingsPath)) {
+      fs.unlinkSync(userSettingsPath);
+    }
+    res.json({ ok: true });
+  } catch (e) {
+    res.status(500).json({ ok: false, error: e.message });
+  }
+});
+
 function loadMergedSettings(userId = null) {
   let baseSettings = DEFAULT_SETTINGS;
 
