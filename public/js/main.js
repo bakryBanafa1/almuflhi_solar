@@ -384,8 +384,9 @@ document.getElementById('solar-system-form').addEventListener('submit', function
     }
 
     // التحقق من أن الأجهزة المحددة تحتوي على بيانات
-    if (!hasValidDeviceData()) {
-        showErrorModal('يرجى ملء بيانات الأجهزة المحددة (العدد وساعات التشغيل).');
+    const deviceValidation = hasValidDeviceData();
+    if (deviceValidation !== true) {
+        showErrorModal(deviceValidation);
         return;
     }
 
@@ -399,6 +400,7 @@ function hasSelectedDevices() {
 }
 
 // دالة التحقق من صحة بيانات الأجهزة
+// تُرجع true إذا كان كل شيء صحيحاً، أو رسالة خطأ نصية في حال وجود مشكلة
 function hasValidDeviceData() {
     const deviceCheckboxes = document.querySelectorAll('input[name="devices"]:checked');
 
@@ -426,19 +428,41 @@ function hasValidDeviceData() {
     if (document.getElementById('other-devices-check')?.checked) {
         const otherDeviceItems = document.querySelectorAll('.other-device-item');
         if (otherDeviceItems.length === 0) {
-            return false;
+            return 'يرجى إضافة جهاز واحد على الأقل أو إلغاء تحديد خيار "أجهزة أخرى".';
         }
 
         for (let item of otherDeviceItems) {
             const deviceId = item.id;
-            const name = document.getElementById(`${deviceId}-name`)?.value;
-            const wattage = document.getElementById(`${deviceId}-wattage`)?.value;
-            const dayHours = document.getElementById(`${deviceId}-day-hours`)?.value;
-            const nightHours = document.getElementById(`${deviceId}-night-hours`)?.value;
+            const nameInput = document.getElementById(`${deviceId}-name`);
+            const wattageInput = document.getElementById(`${deviceId}-wattage`);
+            const dayHoursInput = document.getElementById(`${deviceId}-day-hours`);
+            const nightHoursInput = document.getElementById(`${deviceId}-night-hours`);
 
-            if (!name || !wattage || !dayHours || !nightHours ||
-                parseInt(wattage) === 0 || (parseFloat(dayHours) === 0 && parseFloat(nightHours) === 0)) {
-                return false;
+            const name = nameInput?.value?.trim();
+            const wattage = wattageInput?.value;
+            const dayHours = dayHoursInput?.value;
+            const nightHours = nightHoursInput?.value;
+
+            if (!name) {
+                nameInput?.focus();
+                return 'يرجى تعبئة حقل اسم الجهاز.';
+            }
+
+            if (!wattage || parseInt(wattage) === 0) {
+                wattageInput?.focus();
+                return 'يرجى تعبئة حقل الاستهلاك بالواط بقيمة أكبر من صفر.';
+            }
+
+            // التحقق من ساعات النهار - يقبل 0 لكن يرفض الفراغ
+            if (dayHours === '' || dayHours === null || dayHours === undefined) {
+                dayHoursInput?.focus();
+                return 'يرجى تعبئة حقل عدد ساعات التشغيل في النهار (يمكنك إدخال 0 إذا لم يعمل نهاراً).';
+            }
+
+            // التحقق من ساعات المساء - يقبل 0 لكن يرفض الفراغ
+            if (nightHours === '' || nightHours === null || nightHours === undefined) {
+                nightHoursInput?.focus();
+                return 'يرجى تعبئة حقل عدد ساعات التشغيل في المساء (يمكنك إدخال 0 إذا لم يعمل مساءً).';
             }
         }
     }
