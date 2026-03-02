@@ -330,6 +330,9 @@ document.getElementById('add-device-btn').addEventListener('click', function () 
                     <input type="text" class="input-field" placeholder="اسم الجهاز" id="${deviceId}-name" required>
                 </div>
                 <div class="input-group">
+                    <input type="number" class="input-field" placeholder="عدد الأجهزة" min="1" id="${deviceId}-count" required>
+                </div>
+                <div class="input-group">
                     <input type="number" class="input-field" placeholder="الاستهلاك بالواط" min="0" id="${deviceId}-wattage" required>
                 </div>
                 <div class="input-group">
@@ -443,9 +446,17 @@ function hasValidDeviceData() {
             const dayHours = dayHoursInput?.value;
             const nightHours = nightHoursInput?.value;
 
+            const countInput = document.getElementById(`${deviceId}-count`);
+            const count = countInput?.value;
+
             if (!name) {
                 nameInput?.focus();
                 return 'يرجى تعبئة حقل اسم الجهاز.';
+            }
+
+            if (!count || parseInt(count) <= 0) {
+                countInput?.focus();
+                return 'يرجى تعبئة حقل عدد الأجهزة بقيمة أكبر من صفر.';
             }
 
             if (!wattage || parseInt(wattage) === 0) {
@@ -866,6 +877,7 @@ function calculateConsumption() {
         otherDeviceItems.forEach(item => {
             const deviceId = item.id;
             const name = document.getElementById(`${deviceId}-name`)?.value || 'جهاز آخر';
+            const count = parseInt(document.getElementById(`${deviceId}-count`)?.value) || 1;
             const wattage = parseInt(document.getElementById(`${deviceId}-wattage`)?.value) || 0;
             const dayHoursInput = document.getElementById(`${deviceId}-day-hours`);
             const nightHoursInput = document.getElementById(`${deviceId}-night-hours`);
@@ -873,15 +885,15 @@ function calculateConsumption() {
             const dayHours = dayHoursInput ? validateAndCorrectInput(dayHoursInput) : 0;
             const nightHours = nightHoursInput ? validateAndCorrectInput(nightHoursInput) : 0;
 
-            if (wattage > 0 && (dayHours > 0 || nightHours > 0)) {
-                const dayConsumption = wattage * dayHours;
-                const nightConsumption = wattage * nightHours;
+            if (wattage > 0) {
+                const dayConsumption = count * wattage * dayHours;
+                const nightConsumption = count * wattage * nightHours;
                 totalDayConsumption += dayConsumption;
                 totalNightConsumption += nightConsumption;
 
                 deviceConsumptionDetails[deviceId] = {
                     name: name,
-                    count: 1,
+                    count: count,
                     dayHours: dayHours,
                     nightHours: nightHours,
                     dayConsumption: dayConsumption,
